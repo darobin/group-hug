@@ -1,0 +1,9 @@
+{
+    "name":     "w3c-hug"
+,   "version":  "0.0.1"
+,   "private":  true
+,   "license": "MIT"
+,   "dependencies": {
+        "jquery":    "latest"
+    }
+}
