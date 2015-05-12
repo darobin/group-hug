@@ -23,6 +23,7 @@
             "groups/" + gid
         ,   function (data) {
                 console.log(data);
+                $("#dump").text(JSON.stringify(data, null, 4));
                 
                 // title =name (link =_links.homepage.href)
                 // little group type icon =type
