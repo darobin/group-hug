@@ -6,11 +6,8 @@
     
     // gets JSON in a way that works
     function getJSON (path, success, error) {
-        console.log("accessing", base + path);
-        // XXX this doesn't work because Varnish seems to drop the CORS headers
         $.ajax(base + path, {
-            username:   "rberjon"
-        ,   password:   "XXX"
+            type: "GET"
         ,   xhrFields: {
                 withCredentials:    true
             }
@@ -25,8 +22,17 @@
         getJSON(
             "groups/" + gid
         ,   function (data) {
-                console.log("got some response");
                 console.log(data);
+                
+                // title =name (link =_links.homepage.href)
+                // little group type icon =type
+                // time span =start_date-=end_date (in red if expired)
+                // charter (data from _links.active_charter.href)
+                // domain (data from _links.domain.href)
+                // Chairs (list from _links.chairs.href)
+                // Team Contacts (list from _links.team_contacts.href)
+                // Publications (list from _links.reports.href)
+                // Services (list from _links.services.href)
             }
         ,   function (xhr) {
                 console.error("ERROR:", xhr.statusText);
