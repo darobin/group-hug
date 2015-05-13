@@ -47,7 +47,7 @@
             "groups/" + gid
         ,   function (data) {
                 console.log(data);
-                $("#dump").text(JSON.stringify(data, null, 4));
+                // $("#dump").text(JSON.stringify(data, null, 4));
                 
                 // title =name (link =_links.homepage.href)
                 var $title = $("<h2><a></a></h2>")
