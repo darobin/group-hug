@@ -40,6 +40,38 @@
             }
         );
     }
+
+    function renderPeople ($parent, href, field, name, plural) {
+        if (!plural) plural = name;
+        getJSON(
+            href
+        ,   function (data) {
+                var list = data._embedded[field];
+                name = list.length > 1 ? plural : name;
+                console.log(name, data);
+                var $card = $("<div></div>").addClass("person-card");
+                $("<h3></h3>").text(name).appendTo($card);
+                var $ul = $("<ul></ul>").appendTo($card);
+                for (var i = 0, n = list.length; i < n; i++) {
+                    var item = list[i]
+                    ,   fullName = item.name.replace("[tm]", "™")
+                    ,   $li = $("<li></li>").text(fullName).appendTo($ul)
+                    ;
+                    $("<img>")
+                        .attr({
+                            src:    item._links.photos ?
+                                        item._links.photos.filter(function (it) { return it.name === "tiny"; })[0].href :
+                                        "img/faceless.svg"
+                        ,   alt:    fullName
+                        ,   width:  36
+                        ,   height: 48
+                        })
+                        .prependTo($li);
+                }
+                $card.appendTo($parent);
+            }
+        );
+    }
     
     function renderFullGroup ($el, gid) {
         // fetch the data for that group
@@ -47,7 +79,6 @@
             "groups/" + gid
         ,   function (data) {
                 console.log(data);
-                // $("#dump").text(JSON.stringify(data, null, 4));
                 
                 // title =name (link =_links.homepage.href)
                 var $title = $("<h2><a></a></h2>")
@@ -96,10 +127,20 @@
                 ,   data._links.domain.href
                 );
 
-                // XXX
                 // get the people with embed=true so as to get the pictures
-                // Chairs (list from _links.chairs.href)
-                // Team Contacts (list from _links.team_contacts.href)
+                renderPeople(
+                    $el
+                ,   data._links.chairs.href + "?embed=true"
+                ,   "chairs"
+                ,   "Chair"
+                ,   "Chairs"
+                );
+                renderPeople(
+                    $el
+                ,   data._links.team_contacts.href + "?embed=true"
+                ,   "teamcontacts"
+                ,   "Staff"
+                );
 
                 // Publications (list from _links.reports.href)
                 // Services (list from _links.services.href)
