@@ -101,7 +101,7 @@ main {
 }
 .col {
     flex:   1;
-    margin:    0 1rem;
+    margin:    0 1rem 1rem 1rem;
     background: #fff;
     padding:    1rem;
     border: 1px solid darkorange;

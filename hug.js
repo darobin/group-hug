@@ -73,6 +73,56 @@
         );
     }
     
+    function renderReports ($ul, href) {
+        getJSON(
+            href
+        ,   function (data) {
+                // XXX we need to sort these reports
+                $.each(data._embedded.reports, function (_, report) {
+                    $("<li><a></a> </li>")
+                        .find("a")
+                            .attr("href", report.shortlink)
+                            .text(report.title)
+                        .end()
+                        .append($("<span class='status'></span>").text("(" + report._links.latest.title + ")"))
+                        .appendTo($ul)
+                    ;
+                });
+            }
+        );
+    }
+
+    var icons = {
+        tracker:    "exclamation"
+    ,   wiki:       "pencil"
+    ,   lists:      "envelope"
+    ,   repository: "sc-github"
+    ,   unknown:    "question"
+    };
+    function renderServices ($ul, href) {
+        getJSON(
+            href
+        ,   function (data) {
+                $.each(data._embedded.services, function (_, service) {
+                    $("<li><a></a></li>")
+                        .find("a")
+                            .attr("href", service.link)
+                            .text(service.longdesc || service.shortdesc || service.type)
+                        .end()
+                        .prepend(
+                            $("<img width='25' height='25'>")
+                                .attr({
+                                    alt:    service.type
+                                ,   src:    "icons/icons/ei-" + (icons[service.type] || icons.unknown) + ".svg"
+                                })
+                        )
+                        .appendTo($ul)
+                    ;
+                });
+            }
+        );
+    }
+    
     function renderFullGroup ($el, gid) {
         // fetch the data for that group
         getJSON(
@@ -127,6 +177,18 @@
                 ,   data._links.domain.href
                 );
 
+                // Publications (list from _links.reports.href)
+                renderReports(
+                    $("<div class='reports-card'><h3>Documents</h3><ul></ul></div>").appendTo($el).find("ul")
+                ,   data._links.reports.href + "?embed=true"
+                );
+                
+                // Services (list from _links.services.href)
+                renderServices(
+                    $("<div class='services-card'><h3>Resources</h3><ul></ul></div>").appendTo($el).find("ul")
+                ,   data._links.services.href + "?embed=true"
+                );
+
                 // get the people with embed=true so as to get the pictures
                 renderPeople(
                     $el
@@ -142,8 +204,6 @@
                 ,   "Staff"
                 );
 
-                // Publications (list from _links.reports.href)
-                // Services (list from _links.services.href)
             }
         );
     }
