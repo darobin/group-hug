@@ -115,6 +115,10 @@ h1, h2 {
     font-weight:    300;
     margin-top: 0;
 }
+h3 {
+    font-weight:    normal;
+    margin-bottom: 0;
+}
 
 .group-type {
     color:  #fff;
@@ -136,3 +140,39 @@ h1, h2 {
 .group-card > div {
     margin-left:    42px;
 }
+.group-card .meta {
+    margin-top: -1em;
+    font-size:  0.9em;
+}
+.group-card ul {
+    padding-left:   0;
+    margin-top:    0;
+}
+.group-card li img {
+    vertical-align:   middle;
+}
+.reports-card ul, .services-card ul {
+    list-style-type:   none
+}
+.group-card a {
+    color:  darkorange;
+    text-decoration:    none;
+}
+.group-card .status {
+    font-size:  0.9em;
+    color:  #666;
+}
+.person-card ul {
+    list-style-type:    none;
+}
+.person-card li {
+    display:    inline-block;
+    min-width:  150px;
+    margin:   0 5px 5px 0;
+    padding-right:    5px;
+    border: 1px solid #666;
+}
+.person-card li img {
+    margin-right:   5px;
+}
+

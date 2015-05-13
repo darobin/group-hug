@@ -26,7 +26,7 @@
             href
         ,   function (data) {
                 console.log(data);
-                $("<a>charter</a>").attr("href", data.uri).appendTo($el);
+                $el.find("div.meta a").first().attr("href", data.uri);
             }
         );
     }
@@ -36,7 +36,11 @@
             href
         ,   function (data) {
                 console.log(data);
-                $("<a></a>").attr("href", data._links.homepage.href).text(data.name).appendTo($el);
+                $el.find("div.meta a")
+                    .last()
+                    .attr("href", data._links.homepage.href)
+                    .text(data.name + " Domain")
+                ;
             }
         );
     }
@@ -85,6 +89,9 @@
                             .text(report.title)
                         .end()
                         .append($("<span class='status'></span>").text("(" + report._links.latest.title + ")"))
+                        .prepend(
+                            $("<img width='25' height='25' src='icons/icons/ei-chevron-right.svg' alt=''>")
+                        )
                         .appendTo($ul)
                     ;
                 });
@@ -155,7 +162,7 @@
                         return str.length < 2 ? "0" + str : str;
                     }
                 ,   date = d.getFullYear() + "-" + fmt(d.getMonth() + 1) + "-" + fmt(d.getDate());
-                $("<div><time></time> → <time></time></div>")
+                $("<div class='meta'><a>Chartered</a> <time></time> → <time></time> in the <a>…</a>.</div>")
                     .addClass("lifetime")
                     .find("time").first().text(data.start_date).end().end()
                     .find("time")
@@ -168,12 +175,12 @@
                 
                 // charter (get data from _links.active_charter.href, grab =uri)
                 renderCharter(
-                    $("<div></div>").addClass("charter").appendTo($el)
+                    $el
                 ,   data._links.active_charter.href
                 );
                 // domain (get data from _links.domain.href, grab =name and =_links.homepage.href)
                 renderDomain(
-                    $("<div></div>").addClass("domain").appendTo($el)
+                    $el
                 ,   data._links.domain.href
                 );
 
