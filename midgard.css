@@ -97,42 +97,42 @@ header img {
 */
 main {
     padding-top:    1rem;
+    display:    flex;
 }
-.row {
-    margin-right:   0;
-}
-
-/*
-    ---- WIDGETS -----------------------------------------------------------------------------------
-*/
-.widget {
+.col {
+    flex:   1;
+    margin:    0 1rem;
     background: #fff;
-    border: 1px solid oldlace;
-}
-.widget h2 {
-    font-weight:    normal;
-    padding:    5px 10px 0 10px;
-    margin: 0 0 10px 0;
-    border-bottom:  1px solid darkorange;
-}
-.widget .content {
-    height: 400px;
-    overflow:   auto;
-    padding:    0 10px 10px 10px;
+    padding:    1rem;
+    border: 1px solid darkorange;
 }
 
-/*
-    ---- FORMS -------------------------------------------------------------------------------------
-*/
-.content label {
-    display:    block;
+
+/* local stuff */
+
+h1, h2 {
+    font-size:  2em;
+    font-weight:    300;
+    margin-top: 0;
 }
-.content input[type=text], .content input[type=password] {
-    display:    block;
-    width:  95%;
-    margin-bottom:  10px;
+
+.group-type {
+    color:  #fff;
+    border-radius:  50%;
+    font-size:  0.5em;
+    padding:    5px;
+    display:    inline-block;
+    margin-right:   10px;
+    vertical-align: top;
 }
-.content .action {
-    width:  95%;
-    text-align: right;
+.group-type.wg { background: #00448d; }
+.group-type.cg { background: #fc0; color: #666; }
+.group-type.ig { background: #008d44; }
+
+.group-card h2 a {
+    text-decoration:    none;
+    color:  inherit;
+}
+.group-card > div {
+    margin-left:    42px;
 }

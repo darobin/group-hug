@@ -109,10 +109,20 @@
     
     // data-hug-group is to describe a group
     // we are likely to have others or more granular uses
-    $("*[data-hug-group]").each(function () {
-        var $el = $(this)
-        ,   gid = $el.attr("data-hug-group")
-        ;
-        renderFullGroup($el, gid);
-    });
+    // $("*[data-hug-group]").each(function () {
+    //     var $el = $(this)
+    //     ,   gid = $el.attr("data-hug-group")
+    //     ;
+    //     renderFullGroup($el, gid);
+    // });
+
+    var $hug = $("#hug");
+    $("#pick")
+        .change(function (ev) {
+            $hug.empty();
+            renderFullGroup($hug, $(ev.target).val());
+        })
+        .change()
+    ;
+
 }(jQuery));
