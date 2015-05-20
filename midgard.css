@@ -137,7 +137,7 @@ h3 {
     text-decoration:    none;
     color:  inherit;
 }
-.group-card > div {
+.group-card > div, .group-card > p {
     margin-left:    42px;
 }
 .group-card .meta {

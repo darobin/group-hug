@@ -172,6 +172,10 @@
                     .end().end()
                     .appendTo($el)
                 ;
+                $("<p></p>")
+                    .addClass("mission")
+                    .text(data.description)
+                    .appendTo($el);
                 
                 // charter (get data from _links.active_charter.href, grab =uri)
                 renderCharter(
