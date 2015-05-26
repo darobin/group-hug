@@ -110,7 +110,14 @@
         getJSON(
             href
         ,   function (data) {
-                $.each(data._embedded.services, function (_, service) {
+                // Sort the services array by type
+                function sortByType(a, b) {
+                    return ((a.type < b.type) ? -1 : ((a.type > b.type) ? 1 : 0));
+                }
+                var services = data._embedded.services;
+                services.sort(sortByType);
+
+                $.each(services, function (_, service) {
                     $("<li><a></a></li>")
                         .find("a")
                             .attr("href", service.link)
