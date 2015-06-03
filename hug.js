@@ -154,7 +154,7 @@
                 ;
                 
                 // little group type icon =type
-                var type = data.type.replace(/\b(\w).*?\b\s*/g, "$1");
+                var type = data.type ? data.type.replace(/\b(\w).*?\b\s*/g, "$1") : "??";
                 $("<span></span>")
                     .addClass("group-type")
                     .addClass(type)
