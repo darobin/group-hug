@@ -148,7 +148,7 @@
                 var $title = $("<h2><a></a></h2>")
                                 .find("a")
                                     .text(data.name)
-                                    .attr("href", data._links.homepage.href)
+                                    .attr("href", data._links && data._links.homepage && data._links.homepage.href ? data._links.homepage.href : "")
                                 .end()
                                 .appendTo($el)
                 ;
