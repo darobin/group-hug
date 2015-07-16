@@ -77,18 +77,18 @@
         );
     }
     
-    function renderReports ($ul, href) {
+    function renderSpecifications ($ul, href) {
         getJSON(
             href
         ,   function (data) {
-                // XXX we need to sort these reports
-                $.each(data._embedded.reports, function (_, report) {
+                // XXX we need to sort these specifications
+                $.each(data._embedded.specifications, function (_, specification) {
                     $("<li><a></a> </li>")
                         .find("a")
-                            .attr("href", report.shortlink)
-                            .text(report.title)
+                            .attr("href", specification.shortlink)
+                            .text(specification.title)
                         .end()
-                        .append($("<span class='status'></span>").text("(" + report._links.latest.title + ")"))
+                        .append($("<span class='status'></span>").text("(" + specification._links.latest.title + ")"))
                         .prepend(
                             $("<img width='25' height='25' src='icons/icons/ei-chevron-right.svg' alt=''>")
                         )
@@ -195,10 +195,10 @@
                 ,   data._links.domain.href
                 );
 
-                // Publications (list from _links.reports.href)
-                renderReports(
-                    $("<div class='reports-card'><h3>Documents</h3><ul></ul></div>").appendTo($el).find("ul")
-                ,   data._links.reports.href + "?embed=true"
+                // Publications (list from _links.specifications.href)
+                renderSpecifications(
+                    $("<div class='specifications-card'><h3>Documents</h3><ul></ul></div>").appendTo($el).find("ul")
+                ,   data._links.specifications.href + "?embed=true"
                 );
                 
                 // Services (list from _links.services.href)
